@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.clay</groupId>
+    <artifactId>rabbitmq-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <docker.image.prefix>clay0711</docker.image.prefix>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
+    </dependencies>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.4.13</version>
+            <configuration>
+                <!-- leegoo0820/spring-cloud-eureka-server01-service(name):0.0.1(tag)-->
+                <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
+                <forceTags>true</forceTags>
+                <baseImage>java</baseImage>
+                <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                <resources>
+                    <resource>
+                        <targetPath>/</targetPath>
+                        <!-- 目录地址,也就是target生成的地址 -->
+                        <directory>${project.build.directory}</directory>
+                        <!--需要复制的jar包 -->
+                        <include>${project.build.finalName}.jar</include>
+                    </resource>
+                </resources>
+            </configuration>
+        </plugin>
+
+    </plugins>
+
+</build>
+
+
+</project>
