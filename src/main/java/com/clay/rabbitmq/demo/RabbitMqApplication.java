@@ -52,7 +52,6 @@ public class RabbitMqApplication {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                System.out.println("CommandLineRunner:" + JSON.toJSONString(args));
                 System.out.println(env.getProperty("spring.rabbitmq.host"));
             }
         };
