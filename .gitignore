@@ -2,6 +2,7 @@ airline-core/HELP.md
 **/target/*
 !.mvn/wrapper/maven-wrapper.jar
 *.class
+.gitignore
 
 ### STS ###
 .apt_generated
