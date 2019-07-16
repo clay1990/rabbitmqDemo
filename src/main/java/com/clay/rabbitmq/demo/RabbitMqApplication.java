@@ -52,7 +52,7 @@ public class RabbitMqApplication {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                System.out.println("修改打印信息...");
+                System.out.println("修改打印信息....");
                 System.out.println(env.getProperty("spring.rabbitmq.host"));
             }
         };
