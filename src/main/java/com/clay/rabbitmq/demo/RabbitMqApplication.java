@@ -36,11 +36,6 @@ public class RabbitMqApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(RabbitMqApplication.class, args);
-//        run.stop();
-//        run.close();
-
-
-
     }
 
 
@@ -53,6 +48,7 @@ public class RabbitMqApplication {
             @Override
             public void run(String... args) throws Exception {
                 System.out.println("修改打印信息....");
+                System.out.println("============================");
                 System.out.println(env.getProperty("spring.rabbitmq.host"));
             }
         };
